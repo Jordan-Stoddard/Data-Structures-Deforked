@@ -44,16 +44,29 @@ class DoublyLinkedList:
     return self.length
 
   def add_to_head(self, value):
-    pass
+    new_node = NodeList(value)
+
 
   def remove_from_head(self):
     pass
 
   def add_to_tail(self, value):
-    pass
+    new_node = NodeList(value)
+
+    if not self.head and not self.tail:
+        self.head = new_node
+        self.tail = new_node
 
   def remove_from_tail(self):
-    pass
+    if not self.head and not self.tail:
+        return None
+    
+    if self.head is self.tail:
+        old_tail = self.tail
+        self.head = None
+        self.tail = None
+        self.length -= 1
+        return old_tail
 
   def move_to_front(self, node):
     pass
@@ -66,3 +79,9 @@ class DoublyLinkedList:
     
   def get_max(self):
     pass
+
+single_node = ListNode(1)
+
+DLL = DoublyLinkedList(single_node)
+
+print(DLL.length)
