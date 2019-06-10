@@ -51,6 +51,16 @@ class DoublyLinkedList:
       self.tail = new_node
       self.length += 1
 
+    elif self.head is self.tail:
+      self.head = new_node
+      self.head.next = self.tail
+      self.length += 1
+    else:
+      old_head = self.head
+      self.head = new_node
+      self.head.next = old_head
+      self.length += 1
+
 
   def remove_from_head(self):
     if not self.head and not self.tail:
@@ -69,6 +79,16 @@ class DoublyLinkedList:
     if not self.head and not self.tail:
         self.head = new_node
         self.tail = new_node
+        self.length += 1
+
+    elif self.head is self.tail:
+        self.tail = new_node
+        self.tail.prev = self.head
+        self.length += 1
+    else:
+        old_tail = self.tail
+        self.tail = new_node
+        self.tail.prev = old_tail
         self.length += 1
 
   def remove_from_tail(self):
@@ -93,3 +113,11 @@ class DoublyLinkedList:
     
   def get_max(self):
     pass
+
+
+# DLL = DoublyLinkedList(ListNode(1))
+# print(len(DLL))
+# DLL.remove_from_tail()
+# print(len(DLL))
+# print(DLL.add_to_tail(33))
+# print(len(DLL))
