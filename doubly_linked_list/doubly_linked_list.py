@@ -44,18 +44,19 @@ class DoublyLinkedList:
     return self.length
 
   def add_to_head(self, value):
-    new_node = NodeList(value)
+    new_node = ListNode(value)
 
 
   def remove_from_head(self):
     pass
 
   def add_to_tail(self, value):
-    new_node = NodeList(value)
+    new_node = ListNode(value)
 
     if not self.head and not self.tail:
         self.head = new_node
         self.tail = new_node
+        self.length += 1
 
   def remove_from_tail(self):
     if not self.head and not self.tail:
@@ -79,9 +80,3 @@ class DoublyLinkedList:
     
   def get_max(self):
     pass
-
-single_node = ListNode(1)
-
-DLL = DoublyLinkedList(single_node)
-
-print(DLL.length)
