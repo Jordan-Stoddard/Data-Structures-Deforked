@@ -50,7 +50,6 @@ class DoublyLinkedList:
       self.head = new_node
       self.tail = new_node
       self.length += 1
-
     elif self.head is self.tail:
       self.head = new_node
       self.head.next = self.tail
