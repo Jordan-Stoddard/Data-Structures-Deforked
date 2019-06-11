@@ -65,12 +65,17 @@ class DoublyLinkedList:
     if not self.head and not self.tail:
       return None
     
-    if self.head is self.tail:
+    elif self.head is self.tail:
         old_head = self.head
         self.head = None
         self.tail = None
         self.length -= 1
         return old_head.value
+    else:
+        old_next = self.head.next
+        self.head = old_next
+        self.head.next = old_next.next
+        self.tail.prev = None
 
   def add_to_tail(self, value):
     new_node = ListNode(value)
@@ -83,40 +88,67 @@ class DoublyLinkedList:
     elif self.head is self.tail:
         self.tail = new_node
         self.tail.prev = self.head
+        self.head.next = self.tail
         self.length += 1
     else:
         old_tail = self.tail
         self.tail = new_node
         self.tail.prev = old_tail
+        old_tail.next = self.tail
         self.length += 1
 
   def remove_from_tail(self):
     if not self.head and not self.tail:
         return None
     
-    if self.head is self.tail:
+    elif self.head is self.tail:
         old_tail = self.tail
         self.head = None
         self.tail = None
         self.length -= 1
         return old_tail.value
+    
+    else:
+        old_prev = self.tail.prev
+        self.tail = old_prev
+        self.tail.prev = old_prev.prev
+        self.tail.next = None
+    
 
   def move_to_front(self, node):
     pass
 
   def move_to_end(self, node):
+    next_node = node.next
+    # to swap:
+      #next_node, node = node, next_node
     pass
 
   def delete(self, node):
-    pass
+    next_node = node.next
+    prev_node = node.prev
+    next_node.prev = node.prev
+    prev_node.next = node.next
     
   def get_max(self):
     pass
 
 
-# DLL = DoublyLinkedList(ListNode(1))
-# print(len(DLL))
-# DLL.remove_from_tail()
-# print(len(DLL))
-# print(DLL.add_to_tail(33))
-# print(len(DLL))
+DLL = DoublyLinkedList(ListNode(1))
+DLL.add_to_tail(33)
+DLL.add_to_tail(24)
+DLL.add_to_tail(25)
+node_1 = DLL.head
+print(node_1.value)
+node_2 = DLL.head.next
+print(node_2.value)
+node_3 = node_2.next
+print(node_3.value)
+node_4 = node_3.next
+print(node_4.value)
+
+
+
+
+
+
