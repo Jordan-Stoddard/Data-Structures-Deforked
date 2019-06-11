@@ -58,6 +58,7 @@ class DoublyLinkedList:
       old_head = self.head
       self.head = new_node
       self.head.next = old_head
+      old_head.prev = self.head
       self.length += 1
 
 
@@ -113,39 +114,105 @@ class DoublyLinkedList:
         self.tail = old_prev
         self.tail.prev = old_prev.prev
         self.tail.next = None
-    
 
   def move_to_front(self, node):
-    pass
+    if self.head == node:
+      return
+    elif node.prev == self.head and node == self.tail:
+      old_head = self.head
+      self.head = node
+      self.head.prev = None
+      self.head.next = old_head
+      self.tail = old_head
+      self.tail.prev = self.head
+      self.tail.next = None
+
+    else:
+        # Pull current item out of list.
+      next_node = node.next
+      prev_node = node.prev
+      next_node.prev = node.prev
+      prev_node.next = node.next
+        # Set it to head
+      old_head = self.head
+      self.head = node
+      self.head.next = old_head
+      self.head.prev = None
+      old_head.prev = self.head
 
   def move_to_end(self, node):
-    next_node = node.next
-    # to swap:
-      #next_node, node = node, next_node
-    pass
+    if self.tail == node:
+      return
+    elif node.next == self.tail and node == self.head:
+      old_tail = self.tail
+      self.tail = node
+      self.tail.next = None
+      self.tail.prev = old_tail
+      self.head = old_tail
+      self.head.prev = None
+      self.head.next = self.tail
+      
+    else:
+      # Pull current item out of list.
+      next_node = node.next
+      prev_node = node.prev
+      next_node.prev = node.prev
+      prev_node.next = node.next
+        #Set it to tail
+      old_tail = self.tail
+      self.tail = node
+      self.tail.next = None
+      self.tail.prev = old_tail
+      old_tail.next = self.tail
 
   def delete(self, node):
-    next_node = node.next
-    prev_node = node.prev
-    next_node.prev = node.prev
-    prev_node.next = node.next
+    if node.next == None and node.prev == None:
+      self.head = None
+      self.tail = None
+      self.length -= 1
+    elif self.head == node:
+      old_head = self.head
+      self.head = old_head.next
+      self.head.next = old_head.next.next
+      self.head.prev = None
+      self.length -= 1
+    elif self.head.next == self.tail and self.tail.prev == self.head:
+      self.head = node
+      self.head.next = None
+      self.head.prev = None
+      self.tail = node
+      self.tail.next = None
+      self.tail.prev = None
+    else:
+      next_node = node.next
+      prev_node = node.prev
+      next_node.prev = node.prev
+      prev_node.next = node.next
+      self.length -= 1
     
   def get_max(self):
     pass
 
 
-DLL = DoublyLinkedList(ListNode(1))
-DLL.add_to_tail(33)
-DLL.add_to_tail(24)
-DLL.add_to_tail(25)
-node_1 = DLL.head
-print(node_1.value)
-node_2 = DLL.head.next
-print(node_2.value)
-node_3 = node_2.next
-print(node_3.value)
-node_4 = node_3.next
-print(node_4.value)
+# DLL = DoublyLinkedList(ListNode(1))
+# DLL.add_to_tail(33)
+# DLL.add_to_tail(24)
+# DLL.add_to_tail(25)
+# node_1 = DLL.head
+# print(node_1.value)
+# node_2 = DLL.head.next
+# print(node_2.value)
+# node_3 = node_2.next
+# print(node_3.value)
+# node_4 = node_3.next
+# print(node_4.value)
+
+# node_2.delete()
+
+# print(node_1.value)
+# print(node_2.value)
+# print(node_3.value)
+# print(node_4.value)
 
 
 
