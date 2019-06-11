@@ -191,31 +191,12 @@ class DoublyLinkedList:
       self.length -= 1
     
   def get_max(self):
-    pass
-
-
-# DLL = DoublyLinkedList(ListNode(1))
-# DLL.add_to_tail(33)
-# DLL.add_to_tail(24)
-# DLL.add_to_tail(25)
-# node_1 = DLL.head
-# print(node_1.value)
-# node_2 = DLL.head.next
-# print(node_2.value)
-# node_3 = node_2.next
-# print(node_3.value)
-# node_4 = node_3.next
-# print(node_4.value)
-
-# node_2.delete()
-
-# print(node_1.value)
-# print(node_2.value)
-# print(node_3.value)
-# print(node_4.value)
-
-
-
-
-
-
+    if not self.head and not self.tail:
+      return None
+    current = self.head
+    current_max = self.head.value
+    while current:
+      if current.value > current_max:
+        current_max = current.value
+      current = current.next
+    return current_max
