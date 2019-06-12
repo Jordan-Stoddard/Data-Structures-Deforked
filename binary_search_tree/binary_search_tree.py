@@ -80,13 +80,31 @@ class BinarySearchTree:
     else:
       return current_max
 
-
   def for_each(self, cb):
-    pass
+    # inside for_for each we build a helper function called traverse, that takes in a node.
+    # We then call traverse, and pass in the current node (which should be the root node)
+    def traverse(node): 
+      # If the current node is None return out of traverse.
+      if not node:
+        return
+      # call the cb function passing in the current node.value
+      cb(node.value)
+      # Recursively call traverse on the left node
+      traverse(node.left)
+      # Recursively call traverse on the right node.
+      traverse(node.right)
+    return traverse(self)
 
 
-# bst = BinarySearchTree(5)
-# bst.insert(2)
-# bst.insert(3)
-# bst.insert(7)
+
+
+
+def log(x):
+  return print(x)
+
+bst = BinarySearchTree(5)
+bst.insert(2)
+bst.insert(3)
+bst.insert(7)
+bst.for_each(log)
 # print(bst.contains(7))
