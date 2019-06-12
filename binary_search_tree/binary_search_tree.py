@@ -94,17 +94,3 @@ class BinarySearchTree:
       # Recursively call traverse on the right node.
       traverse(node.right)
     return traverse(self)
-
-
-
-
-
-def log(x):
-  return print(x)
-
-bst = BinarySearchTree(5)
-bst.insert(2)
-bst.insert(3)
-bst.insert(7)
-bst.for_each(log)
-# print(bst.contains(7))
