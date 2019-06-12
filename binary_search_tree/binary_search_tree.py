@@ -20,7 +20,7 @@ class BinarySearchTree:
       # if there is no left child, we can park this node here.
       if not self.left:
         self.left = BinarySearchTree(value)
-        #recurse on the left child
+        # recurse on the left child
       else:
         self.left.insert(value)
     elif value >= self.value:
@@ -33,10 +33,41 @@ class BinarySearchTree:
         self.right.insert(value)
 
   def contains(self, target):
-    pass
+  # base case: target == self.value return True
+    if target == self.value:
+      return True
+    
+  # If we've traversed down to a node where there is no right or left node, return False
+    if not self.right and not self.left:
+        return False
+      
+    # if the target is greater than the current value then go into if statement.
+    if target > self.value:
+      # Once in the if statement, check if there is a self.right, if there isn't
+      # We know the target isn't in the tree, because it's greater than the current value.
+      # so return false.
+      if not self.right:
+        return False
+      # Otherwise, recursively call contains on the right node, which starts us over at
+      # The beginning of this function, but at the node to the right.
+      else:
+        return self.right.contains(target)
+        # Repeat the above but on the left side if target is less than self.value.
+    elif target < self.value:
+      if not self.left:
+        return False
+      else:
+        return self.left.contains(target)
 
   def get_max(self):
     pass
 
   def for_each(self, cb):
     pass
+
+
+bst = BinarySearchTree(5)
+bst.insert(2)
+bst.insert(3)
+bst.insert(7)
+print(bst.contains(7))
