@@ -60,14 +60,33 @@ class BinarySearchTree:
         return self.left.contains(target)
 
   def get_max(self):
-    pass
+    # If the BTS doesn't have anything at the root, return error message.
+    # else, set current_max to be self.value.
+    if not self.value:
+      return 'You can only call get_max on a BTS that has at least one value.\n Try inserting a value first.'
+    else:
+      current_max = self.value
+    # Because higher numbers will always be to the right, we only have to check nodes to the right.
+    # First check if there is a node to the right, if there isn't, it means there is no greater
+    # value, so then we just return the current_max.
+    if not self.right:
+      return current_max
+    
+    # If there is a value to the right, check to see if it is greater to than the current max.
+    # If it is, recursively call get_max on the the right hand node.
+    # Otherwise, just return the current_max, because we know that this is now the greatest node.
+    if self.right.value > current_max:
+      return self.right.get_max()
+    else:
+      return current_max
+
 
   def for_each(self, cb):
     pass
 
 
-bst = BinarySearchTree(5)
-bst.insert(2)
-bst.insert(3)
-bst.insert(7)
-print(bst.contains(7))
+# bst = BinarySearchTree(5)
+# bst.insert(2)
+# bst.insert(3)
+# bst.insert(7)
+# print(bst.contains(7))
