@@ -93,4 +93,5 @@ class BinarySearchTree:
       traverse(node.left)
       # Recursively call traverse on the right node.
       traverse(node.right)
+    # for_each retruns traverse, passing in the root node.
     return traverse(self)
