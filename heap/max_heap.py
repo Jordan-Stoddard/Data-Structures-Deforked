@@ -19,7 +19,7 @@ class Heap:
     return self.storage[0]
 
   def get_size(self):
-    # return len(self.storage)
+    return len(self.storage)
 
   def _bubble_up(self, index):
     # keep bubbling up until we've either reached the top of the heap
