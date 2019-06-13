@@ -3,16 +3,23 @@ class Heap:
     self.storage = []
 
   def insert(self, value):
-    pass
+    #append value to end of array.
+    # bubble the new element up the heap until it is at a valid spot.
+    self.storage.append(value)
+    self._bubble_up(len(self.storage)-1)
 
   def delete(self):
+    # save a reference to the old priority element so we can return it.
+    # overwrite the old priority element with the last element in the array.
+    # Remove the last element from the array (cause we don't want multiple copies)
+    # sift down the element at index 0.
     pass
 
   def get_max(self):
-    pass
+    return self.storage[0]
 
   def get_size(self):
-    pass
+    # return len(self.storage)
 
   def _bubble_up(self, index):
     # keep bubbling up until we've either reached the top of the heap
@@ -35,3 +42,13 @@ class Heap:
 
   def _sift_down(self, index):
     pass
+
+# heap = Heap()
+# heap.insert(2)
+# heap.insert(100)
+# heap.insert(5)
+# heap.insert(3)
+# heap.insert(100)
+# heap.insert(100)
+# heap.insert(101)
+# print(heap.get_max())
